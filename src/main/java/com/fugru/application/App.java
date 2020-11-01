@@ -1,4 +1,4 @@
-package com.fugru.app;
+package com.fugru.application;
 
 import com.fugru.logger.AsyncBinaryLoggerImpl;
 import com.fugru.logger.BinaryLogger;
