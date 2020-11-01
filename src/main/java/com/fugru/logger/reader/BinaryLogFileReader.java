@@ -29,9 +29,9 @@ public class BinaryLogFileReader<T extends BinaryLoggable> implements LogReader<
         byte[] sizeArray;
         T result = null;
         if ((sizeArray = inputStream.readNBytes(DELIMITER_SIZE)).length > 0) {
-            int size = byteArrayToInt(sizeArray);
-            byte[] payload = new byte[size];
-            if (inputStream.read(payload, 0, size) != -1) {
+            int payloadSize = byteArrayToInt(sizeArray);
+            byte[] payload = new byte[payloadSize];
+            if (inputStream.read(payload, 0, payloadSize) != -1) {
                 T instance = clazz.getDeclaredConstructor().newInstance();
                 instance.fromBytes(payload);
                 result = instance;

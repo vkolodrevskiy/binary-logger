@@ -2,6 +2,7 @@ package com.fugru.logger.reader;
 
 import com.fugru.logger.BinaryLoggable;
 
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.Optional;
 import java.util.concurrent.BlockingQueue;
@@ -114,19 +115,19 @@ public class AsyncReader<T extends BinaryLoggable> {
                 }
             }
 
-
-            // reader.close();
+            try {
+                reader.close();
+            } catch (IOException e) {
+                System.err.println("Error while closing reader: " + e.getMessage());
+            }
 
             System.out.println("ReadThread stopped.");
         }
 
         public void shutdown() {
-            // todo: reader.close?
-            // queue
             shutdown = true;
             if (queue.remainingCapacity() == 0) {
-                // todo: Thread.currentThread() ?
-                this.interrupt();
+                Thread.currentThread().interrupt();
             }
         }
     }
