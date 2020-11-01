@@ -6,8 +6,8 @@ mvn compile exec:java -Dexec.mainClass="com.fugru.application.App"
 ```
 
 #### Solution description:
-Main goal of this solution was to provide lower latency for the client code.
-So instead of blocking client code on writing and reading from files directly, events are sent to in memory queue.
+Main goal of this solution was to provide lower latency for the client code calling it.
+So instead of blocking client code on writing and reading from files directly, events are sent to in-memory queue.
 Asynchronous threads are handling working with file system. 
 
 #### Improvements that can/should be made:
